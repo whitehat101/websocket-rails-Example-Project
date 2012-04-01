@@ -61,8 +61,8 @@ function send_message(socket) {
 }
 
 var ServerEventsDispatcher = function(){
-//	var conn = new WebSocket("ws://afternoon-rain-3426.herokuapp.com:80/websocket")
-	var conn = new WebSocket("ws://localhost:5000/websocket")
+	var conn = new WebSocket("ws://afternoon-rain-3426.herokuapp.com:80/websocket")
+//	var conn = new WebSocket("ws://localhost:5000/websocket")
 	
 	var callbacks = {}
 	

@@ -16,7 +16,7 @@ gem 'em-synchrony', :require => ['em-synchrony',
 gem 'em-http-request', :require => 'em-http'
 gem 'addressable', :require => 'addressable/uri'
 gem 'thin'
-gem 'websocket-rails', :path => '~/.pow/websocket-rails'
+gem 'websocket-rails' #, :path => '~/.pow/websocket-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
