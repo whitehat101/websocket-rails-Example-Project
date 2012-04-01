@@ -1,3 +1,12 @@
+PATH
+  remote: ~/.pow/websocket-rails
+  specs:
+    websocket-rails (0.0.1)
+      em-websocket (~> 0.3.6)
+      rack
+      thin
+      websocket-rack
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -134,11 +143,6 @@ GEM
       em-websocket (~> 0.3.6)
       rack
       thin
-    websocket-rails (0.0.1)
-      em-websocket (~> 0.3.6)
-      rack
-      thin
-      websocket-rack
 
 PLATFORMS
   ruby
@@ -158,4 +162,4 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   websocket-rack
-  websocket-rails
+  websocket-rails!

@@ -1,0 +1,1 @@
+web: bundle exec thin-websocket -p $PORT start

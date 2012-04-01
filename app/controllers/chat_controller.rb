@@ -1,8 +1,21 @@
 class ChatController < WebsocketRails::BaseController
+=begin  
+  observe {
+    if data_store.each_user.count > 0
+      puts 'it worked'
+    end
+    
+    if message_counter > 10
+      puts 'message counter needs to be dumped'
+      self.message_counter = 0
+    end
+  }
   
+  attr_accessor :message_counter
+=end  
   def initialize_session
-    @users = []
     puts "Session Initialized\n"
+    #@message_counter = 0
   end
   
   def client_connected
@@ -11,6 +24,7 @@ class ChatController < WebsocketRails::BaseController
   
   def new_message
     puts "Message from UID: #{client_id}\n"
+    @message_counter += 1
     broadcast_message :new_message, message
   end
   
