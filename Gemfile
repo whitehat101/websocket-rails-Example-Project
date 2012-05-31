@@ -8,7 +8,7 @@ gem 'rails', '3.2.1'
 gem 'pg'
 gem 'twitter-bootstrap-rails'
 gem 'eventmachine', '~> 0.12.2'
-gem 'websocket-rack'
+#gem 'websocket-rack' , :path => '~/.pow/websocket-rack'
 gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
 #gem 'em-mysqlplus'
 gem 'em-synchrony', :require => ['em-synchrony',
@@ -16,7 +16,9 @@ gem 'em-synchrony', :require => ['em-synchrony',
 gem 'em-http-request', :require => 'em-http'
 gem 'addressable', :require => 'addressable/uri'
 gem 'thin'
-gem 'websocket-rails' #, :path => '~/.pow/websocket-rails'
+gem 'faye-websocket'
+gem 'websocket-rails', :path => '~/code/websocket-rails'
+gem 'yard'
 
 # Gems used only for assets and not required
 # in production environments by default.

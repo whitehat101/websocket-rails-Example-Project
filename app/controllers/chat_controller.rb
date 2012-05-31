@@ -1,5 +1,5 @@
 class ChatController < WebsocketRails::BaseController
-=begin  
+
   observe {
     if data_store.each_user.count > 0
       puts 'it worked'
@@ -11,15 +11,20 @@ class ChatController < WebsocketRails::BaseController
     end
   }
   
+  observe(:new_message) {
+    puts "message observer fired for #{message}"
+  }
+  
   attr_accessor :message_counter
-=end  
+
   def initialize_session
     puts "Session Initialized\n"
-    #@message_counter = 0
+    @message_counter = 0
   end
   
   def client_connected
     # do something when a client connects
+    puts "execuitng?"
   end
   
   def new_message
@@ -41,7 +46,8 @@ class ChatController < WebsocketRails::BaseController
   
   def delete_user
     data_store.remove_client
-    braodcast_user_list
+    broadcast_message :new_message, {user_name: 'System', msg_body: "Client #{client_id} disconnected"}
+    broadcast_user_list
   end
   
   def broadcast_user_list

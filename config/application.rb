@@ -14,7 +14,31 @@ module Chat
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    
+    class DankRouter < YARD::Server::Router
+      def docs_prefix; 'gemdocs' end
+      def list_prefix; 'gemlist' end
+      def search_prefix; 'gemsearch' end
+    end
+    class DankDocumentor < YARD::Server::RackMiddleware
+      def call(env)
+        request = Rack::Request.new(env)
+        status, headers, body = *@adapter.call(env)
+        if request.path_info =~ /(^\/gemsearch|^\/css|^\/js|^\/gemlist|^\/gemdocs)/ && status != 404
+          [status, headers, body]
+        else
+          @app.call(env)
+        end
+      end
+    end
+    gemfile = File.expand_path("Gemfile.lock",Rails.root)
+    libraries = {}
+    Bundler::LockfileParser.new(File.read(gemfile)).specs.each do |spec|
+      libraries[spec.name] ||= []
+      libraries[spec.name] |= [YARD::Server::LibraryVersion.new(spec.name, spec.version.to_s, nil, :gem)]
+    end
+    #YARD::Server::RackAdapter.setup
+
+    config.middleware.use DankDocumentor, :libraries => libraries, :options => {:router => DankRouter}
     # Configure Rails Asynchronous Request Processing
     config.middleware.use Rack::FiberPool
     config.threadsafe!

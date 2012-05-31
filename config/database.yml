@@ -1,5 +1,8 @@
 common: &common
   adapter: postgresql
+  username: dan
+  password: mele4all
+  host: localhost
 
 development:
   <<: *common
